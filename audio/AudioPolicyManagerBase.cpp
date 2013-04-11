@@ -57,7 +57,6 @@
 #include <hardware/audio.h>
 #include <math.h>
 #include <hardware_legacy/audio_policy_conf.h>
-
 #ifdef DOLBY_UDC_MULTICHANNEL
 // System property shared with dolby codec
 #define DOLBY_SYSTEM_PROPERTY "dolby.audio.sink.info"
@@ -203,7 +202,6 @@ status_t AudioPolicyManagerBase::setDeviceConnectionState(audio_devices_t device
                             true,
                             0);
         }
-
 #ifdef DOLBY_UDC_MULTICHANNEL
         audio_devices_t audioOutputDevice = getDeviceForStrategy(getStrategy(AudioSystem::MUSIC), false);
         setDolbySystemProperty(audioOutputDevice);
@@ -758,7 +756,6 @@ status_t AudioPolicyManagerBase::startOutput(audio_io_handle_t output,
             usleep((waitMs - muteWaitMs) * 2 * 1000);
         }
     }
-
 #ifdef DOLBY_UDC_MULTICHANNEL
     // It is observed that in some use-cases where both outputs are present eg. bluetooth and headphone,
     // the output for particular stream type is decided in this routine. Hence we must call
@@ -1759,7 +1756,6 @@ status_t AudioPolicyManagerBase::checkOutputsForDevice(audio_devices_t device,
                         output = 0;
                     }
                 }
-
 #ifdef DOLBY_UDC_MULTICHANNEL
                 if (device == AUDIO_DEVICE_OUT_AUX_DIGITAL)
                 {
@@ -1792,7 +1788,6 @@ status_t AudioPolicyManagerBase::checkOutputsForDevice(audio_devices_t device,
                 delete desc;
                 profiles.removeAt(profile_index);
                 profile_index--;
-
 #ifdef DOLBY_UDC_MULTICHANNEL
                 if (device == AUDIO_DEVICE_OUT_AUX_DIGITAL)
                 {
@@ -3116,7 +3111,6 @@ void AudioPolicyManagerBase::setDolbySystemProperty(audio_devices_t device)
     }
 }
 #endif //DOLBY_UDC_MULTICHANNEL
-
 // --- AudioOutputDescriptor class implementation
 
 AudioPolicyManagerBase::AudioOutputDescriptor::AudioOutputDescriptor(
